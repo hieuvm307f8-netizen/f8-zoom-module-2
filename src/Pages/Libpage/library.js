@@ -4,9 +4,11 @@ import { app } from "../../main";
 
 const library = () => {
   app.innerHTML = `
-    <h1>Thư viện</h1>
-      ${Sidebar()}
-    ${Header()}
+  ${Header()}
+    <main>
+      <h1>Thư viện</h1>
+    </main>
+    ${Sidebar()}
     `;
 };
 export default library;

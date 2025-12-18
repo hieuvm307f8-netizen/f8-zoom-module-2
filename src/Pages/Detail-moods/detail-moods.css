@@ -1,0 +1,202 @@
+.auth-info {
+  display: block;
+  color: #fff;
+  margin-left: 220px;
+}
+
+.auth-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 220px;
+}
+
+.auth-block .auth-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.auth-name {
+  margin-left: -220px;
+  margin-bottom: 50px;
+  font-size: 30px;
+}
+
+.fa-hand {
+  color: gold;
+  rotate: 60deg;
+}
+
+.auth-block .logout-btn {
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn {
+  min-width: 90px;
+  line-height: 40px;
+  background-color: grey;
+  padding: 10px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.title {
+  margin-top: 100px;
+  font-size: 45px;
+  color: #fff;
+  font-weight: 800;
+}
+
+.quick-picks {
+  margin-top: 40px;
+}
+
+.quick-picks {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.quick-picks .quickpick__item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 30%;
+  height: 60px;
+  border-radius: 6px;
+  padding: 15px;
+  color: #fff;
+  transition: 0.3s;
+  position: relative;
+}
+
+.play-btn {
+  position: absolute;
+  font-size: 18px;
+  left: 28px;
+  display: none;
+  transition: 0.3s;
+}
+
+.quickpick__img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.quickpick-info__title {
+  font-size: 16px;
+  color: #fff;
+}
+
+.quickpick-info__detail {
+  font-size: 14px;
+  color: grey;
+  margin-top: 10px;
+}
+
+/* scroll bar */
+.album-list {
+  display: flex;
+  gap: 20px;
+  padding: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar Chrome */
+.album-list::-webkit-scrollbar {
+  height: 8px;
+}
+
+.album-list::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.album-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox */
+.album-list {
+  scrollbar-width: thin;
+  scrollbar-color: #555 transparent;
+}
+
+
+.album-control {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.prev, .next {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.control-hover:hover {
+  opacity: 0.9;
+}
+
+.album-item {
+  cursor: pointer;
+  position: relative;
+}
+
+
+.album-item img {
+  width: 200px;  
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.album-item .suggesttion-title {
+  white-space: nowrap;
+  margin-top: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.album-item .suggestion-artists {
+  margin-top: 8px;
+  color: #fff;
+  font-size: 14px;
+}
+
+
+.album-item .fa-play {
+  font-size: 30px;
+  position: absolute;
+  top: 10px;
+}
+
+.today-list img {
+  width: 300px;
+  height: 300px;
+}
+
+.country-list {
+  display: flex;
+  margin-top: 40px;
+  gap: 30px;
+}
+
+.title, .sub-title {
+    color: #fff;
+    margin-top: 30px;
+}

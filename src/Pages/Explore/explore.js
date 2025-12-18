@@ -1,12 +1,14 @@
 import Header from "../../components/Header/header";
 import Sidebar from "../../components/Sidebar/sidebar";
 import { app } from "../../main";
+import '../../style.css';
 
 const explore = () => {
   app.innerHTML = `
-    <h1>Khám Phá</h1>
-      ${Sidebar()}
     ${Header()}
+    <main>
+      </main>
+    ${Sidebar()}
     `;
 };
 export default explore;

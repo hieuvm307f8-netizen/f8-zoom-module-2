@@ -1,0 +1,127 @@
+/* ===== SIDEBAR ===== */
+.sidebar {
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    /* Chiều rộng ban đầu (thu gọn) */
+    width: 72px; 
+    padding: 10px;
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+    /* Căn giữa nội dung theo chiều ngang khi thu gọn */
+    align-items: center; 
+}
+
+/* ===== SIDEBAR OPEN (SỬ DỤNG CLASS "toggle" BẰNG JS) ===== */
+.sidebar.toggle {
+    width: 240px; /* Chiều rộng khi mở rộng */
+    /* Căn nội dung sang trái khi mở rộng */
+    align-items: flex-start;
+}
+
+/* ===== MENU BUTTON ===== */
+.sidebar .bars {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.sidebar .bars:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Căn lề trái cho Menu Button khi mở rộng */
+.sidebar.toggle .bars {
+    margin-left: 10px; 
+}
+
+/* Định nghĩa Navigation Container để chứa các link */
+.navigation {
+    width: 100%;
+}
+
+/* ===== NAV LINK (THU GỌN - MẶC ĐỊNH) ===== */
+.nav-link {
+    /* Hiển thị theo cột: Icon trên, Title dưới */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center; 
+
+    width: 100%; 
+    height: 72px; /* Kích thước tiêu chuẩn cho chế độ thu gọn */
+    padding: 8px 0;
+    margin-bottom: 6px; 
+
+    border-radius: 10px;
+    color: #fff;
+    text-decoration: none;
+
+    transition: background-color 0.2s ease, transform 0.3s ease; 
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ===== ICON (MẶC ĐỊNH) ===== */
+.nav-icon {
+    font-size: 20px; 
+    min-width: 24px;
+    text-align: center;
+    margin-bottom: 4px;
+
+    transition: all 0.3s ease; /* Transition cho icon */
+}
+
+/* ===== TITLE (MẶC ĐỊNH) ===== */
+.nav-title {
+    font-size: 11px; 
+    white-space: nowrap;
+    text-align: center;
+    /* Đảm bảo title có thể ẩn/hiện mượt mà */
+    transition: all 0.3s ease; 
+}
+
+/* ======================================= */
+/* ===== KHI SIDEBAR MỞ RỘNG (.toggle) ===== */
+/* ======================================= */
+
+/* NAV LINK khi SIDEBAR MỞ RỘNG */
+.sidebar.toggle .nav-link {
+    /* Chuyển sang hiển thị theo hàng: Icon trái, Title phải */
+    flex-direction: row; 
+    justify-content: flex-start; 
+
+    /* Điều chỉnh kích thước và padding khi mở rộng */
+    width: calc(100% - 20px); /* 100% trừ đi 10px padding mỗi bên */
+    height: 40px; 
+    padding: 0 10px; 
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+
+/* ICON khi SIDEBAR MỞ RỘNG */
+.sidebar.toggle .nav-icon {
+    font-size: 26px; 
+    min-width: 24px;
+    margin-right: 16px; /* Khoảng cách giữa icon và title */
+    margin-bottom: 0;
+}
+
+/* TITLE khi SIDEBAR MỞ RỘNG */
+.sidebar.toggle .nav-title {
+    font-size: 14px; 
+    /* Title đã tự động căn chỉnh nhờ flex-direction: row */
+}
