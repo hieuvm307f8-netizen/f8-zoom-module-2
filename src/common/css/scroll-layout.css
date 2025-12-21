@@ -1,0 +1,85 @@
+.scroll {
+    margin: 10px auto;
+    position: relative;
+}
+
+.scroll-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.scroll-header i {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.scroll-header i:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Danh sách cuộn ngang */
+.scrollbar-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth; /* Tạo hiệu ứng trượt mượt */
+    padding-bottom: 10px;
+}
+
+.scrollbar-list {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Item styling */
+.item {
+    min-width: 200px; /* Độ rộng mỗi album */
+    flex-shrink: 0;   /* Không cho các item bị co lại */
+}
+
+.alb-thumbnail {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.alb-name {
+    color: white;
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    /* Giới hạn 1 dòng text */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.alb-artists {
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.scrollbar-list .item {
+    cursor: pointer;
+}
+
+.scrollbar-list .item .alb-thumbnail {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+

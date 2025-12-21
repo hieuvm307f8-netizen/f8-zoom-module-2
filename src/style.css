@@ -4,38 +4,16 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 a {
   text-decoration: none;
+  cursor: pointer;
 }
 
 html {
   font-family: "Roboto", sans-serif;
-}
-
-.btn {
-  cursor: pointer;
-  width: 90px;
-  line-height: 40px;
-  border-radius: 5px;
-  outline: none;
-  border: none;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
-main {
-  width: 1400px;
-  margin-top: 100px;
-  margin-left: 100px;
-  padding-bottom: 250px;
-}
-
-body {
-  /* background-color: black; */
   background: #020024;
   background: linear-gradient(
     90deg,
@@ -43,4 +21,567 @@ body {
     rgba(9, 9, 121, 1) 35%,
     rgba(0, 212, 255, 1) 100%
   );
+}
+
+.content {
+  width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.padding-content {
+  padding-top: 90px;
+  padding-left: 186px;
+}
+
+/* Header */
+.header {
+  background-color: black;
+  height: 55px;
+  padding-bottom: 62px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+.header .flex {
+  display: flex;
+  align-items: center;
+}
+
+.menu-bar {
+  color: #fff;
+  font-size: 30px;
+  margin-left: -60px;
+  margin-top: 8px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-bar:hover {
+  opacity: 0.9;
+  background-color: grey;
+}
+
+.header .flex .logo {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.flex .logo .fa-youtube {
+  font-size: 40px;
+  color: red;
+}
+
+.flex .logo .band-name {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.header .input-search {
+  margin-left: 80px;
+  position: relative;
+}
+
+.header .input-search #search {
+  width: 450px;
+  padding: 8px;
+  padding-left: 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.input-search .search-icon {
+  color: grey;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#search:not(:placeholder-shown) + .search-icon {
+  color: black;
+}
+
+.btn {
+  display: inline-block;
+  min-width: 120px;
+  line-height: 40px;
+  cursor: pointer;
+  text-align: center;
+  background-color: #555;
+  color: #fff;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  background-color: grey;
+}
+
+.btn-login {
+  min-width: 140px;
+  text-align: center;
+  color: blue;
+  background-color: #fff;
+  border-radius: 999px;
+  margin-left: 400px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-login i {
+  font-size: 20px;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  width: 70px;
+  top: 35px;
+  bottom: 0;
+  background-color: black;
+}
+
+.sidebar ul {
+  padding-top: 20px;
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-top: 20px;
+  color: #fff;
+  border-radius: 6px;
+  width: 65px;
+  padding: 16px;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  background-color: #555;
+  opacity: 0.9;
+}
+
+.sidebar ul li i {
+  margin-bottom: 8px;
+  font-size: 25px;
+}
+
+.sidebar ul li a {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+/* Home */
+/* Home - moods */
+.mood-list {
+  display: flex;
+  gap: 15px;
+}
+
+.btn-mood {
+  background-color: grey;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.title {
+  margin-top: 50px;
+  color: #fff;
+  font-size: 40px;
+}
+
+/* Home - quick-picks */
+.quick-pick__list {
+  margin-top: 30px;
+}
+
+.quick-pick__list .quick-picks__item {
+  width: 40%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.quick-pick__list .quick-picks__item .quick-pick__thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.quick-pick__list .quick-picks__item .quick-pick__info {
+  color: #fff;
+}
+
+.quick-pick__list .quick-picks__item .quick-pick__info .item-name {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.quick-pick__list .quick-picks__item .quick-pick__info .info {
+  font-size: 14px;
+}
+
+.quick-picks__item .fa-play {
+  color: #fff;
+  position: absolute;
+  left: 26px;
+  font-size: 20px;
+}
+
+/* Home-country */
+.country-list {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.country-list .country-item {
+  cursor: pointer;
+}
+
+.country-list .country-item .country-thumb {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.country-list .country-item .country-item__title {
+  font-size: 16px;
+  margin-top: 8px;
+  color: #fff;
+}
+
+.country-list .country-item .artists {
+  color: grey;
+  margin-top: 8px;
+}
+
+/* Detail Mood Page */
+.sub-title {
+  color: #fff;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* Detail Playlist Page */
+/* Layout tổng thể */
+.playlist-detail__flex {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  padding-top: 20px;
+}
+
+/* Cột bên trái: Thông tin Playlist */
+.playlist-detail__info {
+  flex: 0 0 350px; /* Độ rộng cố định cho vùng info */
+  position: sticky;
+  top: 100px; /* Giữ thông tin cố định khi cuộn trang */
+  display: flex;
+  flex-direction: column;
+}
+
+.playlist-detail__thumb {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
+}
+
+.playlist-detail__info .title {
+  font-size: 28px;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.playlist-detail__info .sub-title {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.playlist-detail__info-amount {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.playlist-detail__info-view {
+  color: #aaa;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Cột bên phải: Danh sách bài hát */
+.playlist-detail__songs {
+  flex: 1;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* Nếu bạn muốn cuộn riêng vùng này thay vì cuộn cả trang */
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Tùy chỉnh thanh cuộn dọc cho danh sách bài hát */
+.playlist-detail__songs::-webkit-scrollbar {
+  width: 6px;
+}
+
+.playlist-detail__songs::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+/* Từng item bài hát */
+.playlist-detail__song-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.playlist-detail__song-item .fa-play {
+  position: absolute;
+  left: 56px;
+  color: #fff;
+  font-size: 18px;
+  display: none;
+}
+.playlist-detail__song-item:hover .fa-play {
+  display: block; 
+}
+
+.playlist-detail__song-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.song-item__index {
+  width: 30px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.song-item__thumb {
+  width: 45px;
+  height: 45px;
+  border-radius: 4px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.song-item__info {
+  flex: 1;
+}
+
+.song-item__title {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.song-item__artist {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.song-item__duration {
+  color: #aaa;
+  font-size: 14px;
+  margin-left: 20px;
+}
+
+/* Playbar */
+.play-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: #000;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+#progress-bar {
+    width: 100%;
+    height: 4px;
+    cursor: pointer;
+    accent-color: red; /* Màu đỏ giống Youtube */
+}
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    flex: 1;
+}
+
+/* Login */
+.container {
+  min-height: 100vh;
+  background-color: #c62828;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== FORM WRAPPER ===== */
+.form-container {
+  width: 820px;
+  height: 460px;
+  display: flex;
+  background-color: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== LEFT ===== */
+.form-left {
+  flex: 1;
+  background-color: #b71c1c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-left img {
+  width: 80%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ===== RIGHT ===== */
+.form-right {
+  flex: 1;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-title {
+  margin-bottom: 24px;
+  font-size: 28px;
+  color: #c62828;
+}
+
+/* ===== FORM ===== */
+#login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #555;
+}
+
+.form-group input {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  outline: none;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  border-color: #c62828;
+}
+
+/* ===== BUTTON ===== */
+#login-form button {
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  background-color: #c62828;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#login-form button:hover {
+  background-color: #b71c1c;
+}
+
+/* ===== EXTRA LINKS ===== */
+.form-extra {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.form-extra a {
+  color: #c62828;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.form-extra a:hover {
+  opacity: 0.8;
+}
+
+/* ===== LEFT ===== */
+.form-left {
+  flex: 1;
+  background-color: #b71c1c;
+  overflow: hidden;  
+}
+
+.form-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;    
+  display: block;
 }
