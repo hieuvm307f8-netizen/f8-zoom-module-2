@@ -1,5 +1,7 @@
+import footer from "../components/footer";
 import header from "../components/header";
 import sidebar from "../components/sidebar";
+
 
 export default function defaultLayout() {
   return `
@@ -10,7 +12,7 @@ ${sidebar()}
       <main id="main-content">
       </main>
     </div>
-    
+${footer()}
 </div>
   `;
 }

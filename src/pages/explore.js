@@ -1,7 +1,9 @@
 export default function explore () {
     return `
         <div>
-            <h1>Explore Page</h1>
+            <div class="content padding-content">
+                
+            </div>
         </div>
     `
 };

@@ -1,3 +1,4 @@
+import instance from '../axios';
 import '../style.css'
 export default function header () {
     return /*html*/` 
@@ -14,8 +15,9 @@ export default function header () {
                 </a>
                 
                 <div class="input-search">
-                    <input type="text" id="search" placeholder="Tìm kiếm bài hát, nghệ sĩ, album..."/>
+                    <input type="search" id="search" placeholder="Tìm kiếm bài hát, nghệ sĩ, album..."/>
                     <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <ul class="search-suggestions" id="search-suggestions"></ul>
                 </div>
 
                 <div class="actions">
@@ -29,3 +31,5 @@ export default function header () {
     </header>
     `
 }
+
+

@@ -3,10 +3,8 @@ import "../style.css";
 import "../common/css/scroll-layout.css";
 import { initHorizontalScroll } from "../common/JS/scroll";
 
-
-
 export default function home() {
-  return /*html*/ `
+  return /*html*/ `                 
         <div class="content padding-content">
             <div class="mood-list"></div>
             <!-- Quick Pick-->
@@ -39,14 +37,16 @@ export default function home() {
 }
 
 export async function homeScript() {
-    initHorizontalScroll(".scroll", 500);
-    initHorizontalScroll("#scroll-top-hits", 500);
-    //mood-list
-    const moodListEl = document.querySelector(".mood-list");
-    const moodListResponse = await instance.get("/moods");
-    moodListEl.innerHTML = moodListResponse.data.items.map((item) => {
-        return `<a href="/moods/${item.slug}" data-navigo class="btn">${item.name}</a>`
-    }).join("");    
+  initHorizontalScroll(".scroll", 500);
+  initHorizontalScroll("#scroll-top-hits", 500);
+  //mood-list
+  const moodListEl = document.querySelector(".mood-list");
+  const moodListResponse = await instance.get("/moods");
+  moodListEl.innerHTML = moodListResponse.data.items
+    .map((item) => {
+      return `<a href="/moods/${item.slug}" data-navigo class="btn">${item.name}</a>`;
+    })
+    .join("");
 
   // quick-pick
   const quickPickEl = document.querySelector(".quick-pick__list");
@@ -69,42 +69,50 @@ export async function homeScript() {
     })
     .join("");
 
-    // Suggest Album
-    const SuggestAlbumEl = document.querySelector('.scrollbar-list');
-    const suggestAlbRequest = await instance.get('/home/albums-for-you');
-    SuggestAlbumEl.innerHTML = suggestAlbRequest.data.map((item) => {
-        return `
+  // Suggest Album
+  const SuggestAlbumEl = document.querySelector(".scrollbar-list");
+  const suggestAlbRequest = await instance.get("/home/albums-for-you");
+  SuggestAlbumEl.innerHTML = suggestAlbRequest.data
+    .map((item) => {
+      return `
             <div class="item">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
             </div>
-        `
-    }).join('')
+        `;
+    })
+    .join("");
 
-    // Hits 
-    const todayHitEl = document.querySelector('.today-hit');
-    const todayHitResponse = await instance.get('/home/todays-hits');
-    todayHitEl.innerHTML = todayHitResponse.data.map((item) => {
-        return `
+  // Hits
+  const todayHitEl = document.querySelector(".today-hit");
+  const todayHitResponse = await instance.get("/home/todays-hits");
+  todayHitEl.innerHTML = todayHitResponse.data
+    .map((item) => {
+      return `
             <div class="item">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
             </div>
-        `
-    }).join('');
+        `;
+    })
+    .join("");
 
-    // Country-music
-    const countryList = document.querySelector('.country-list');
-    const countryResponse = await instance.get(`/playlists/by-country?country=VN&limit=4`);
-    countryList.innerHTML = countryResponse.data.map((item) => {
-        return `
+  // Country-music
+  const countryList = document.querySelector(".country-list");
+  const countryResponse = await instance.get(
+    `/playlists/by-country?country=VN&limit=4`
+  );
+  countryList.innerHTML = countryResponse.data
+    .map((item) => {
+      return `
             <div class="country-item">
                 <img alt="country-thumb" class="country-thumb" src="${item.thumbnails[0]}"/>
                 <h3 class="country-item__title">${item.title}</h3>
                 <span class="artists">${item.artists}</span>
             </div>
-        `
-    }).join('')
+        `;
+    })
+    .join("");
 }
