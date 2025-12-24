@@ -10,15 +10,18 @@ import login, { loginScript } from "./pages/login";
 import register, { registerScript } from "./pages/register";
 import defaultLayout from "./Layouts/defaultLayout";
 import { headerScript } from "./components/header";
+import { footerScript } from "./components/footer";
+import detailAlbum, { detailAlbumScript } from "./pages/detail-album";
+import detailVideo, { detailVideoScript } from "./pages/detail-video";
 
 export default function  router() {
    const app = document.querySelector("#app");
 
   // Render layout 1 lần
   app.innerHTML = defaultLayout();
-
   // Gắn event cho header
   headerScript();
+  footerScript();
     const router = new Navigo('/');
     router
     .on("/", () => {
@@ -26,6 +29,7 @@ export default function  router() {
       document.querySelector("#main-content").innerHTML = home();
       // Run JS
       homeScript();
+    
     })
     .on("/explore", () => {
       document.querySelector("#main-content").innerHTML = explore();
@@ -62,6 +66,16 @@ export default function  router() {
       const id = data.id;
       document.querySelector("#main-content").innerHTML = detailSong();
       detailSongScript(id);
+    })
+    .on("/albums/details/:slug", ({data}) => {
+      const slug = data.slug;
+      document.querySelector("#main-content").innerHTML = detailAlbum();
+      detailAlbumScript(slug);
+    })
+    .on("/videos/details/:slug", ({ data }) => {
+      const slug = data.slug;
+      document.querySelector("#main-content").innerHTML = detailVideo();
+      detailVideoScript(slug);
     })
     router.resolve();
 }

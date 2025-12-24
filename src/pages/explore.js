@@ -72,11 +72,11 @@ export async function exploreScript () {
     console.log(albumsRess.data.items);
     newAlbList.innerHTML = albumsRess.data.items.map((item) => {
         return `
-            <div class="item">
+            <a class="item" href="/albums/details/${item.slug}" data-navigo>
                 <img src="${item.thumb}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.name}</h3>
                 <h3 class="alb-artists">${item.albumType}</h3>
-            </div>
+            </a>
         `
     }).join('');
 
@@ -100,12 +100,12 @@ export async function exploreScript () {
     console.log(videosData.data.items);
     videosList.innerHTML = videosData.data.items.map((item) =>{
         return `
-            <div class="item" style="width: 340px">
+            <a class="item" style="width: 340px" href="/videos/details/${item.slug}">
                 <i class="fa-solid fa-circle-play"></i>
                 <img src="${item.thumb}" alt="alb-thumbnail" class="alb-thumbnail" style="width: 100%"/>
                 <h3 class="alb-name">${item.name}</h3>
                 <h3 class="alb-artists">${item.views} Lượt xem</h3>
-            </div>
+            </a>
         `
     }).join('');
            

@@ -955,7 +955,6 @@ button:disabled {
   position: relative;
 }
 
-
 .fa-circle-play {
   position: absolute;
   top: 30%;
@@ -965,4 +964,148 @@ button:disabled {
   font-size: 70px;
   color: #fff;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+/* Detail-video */
+.content-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.progress-bar {
+  margin-top: 120px;
+}
+
+.main-control {
+  margin-top: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-control button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.main-control button i {
+  font-size: 30px;
+  color: #fff;
+}
+
+.volume-button .fa-volume-high {
+  font-size: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.related-item.active {
+  background-color: grey;
+  transition: all 0.3s ease;
+}
+
+/* related */
+.related {
+  height: 800px;
+  overflow-y: auto;
+}
+
+.related-item {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 20px;
+  width: 280px;
+  cursor: pointer;
+}
+
+.related-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.related-item__title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.related-item__duration {
+  color: #555;
+}
+
+/* Detail-video */
+.content-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start; /* Quan trọng để sticky hoạt động */
+}
+
+/* related */
+.related {
+  height: calc(100vh - 40px); /* Cho phép cao gần bằng màn hình */
+  overflow-y: auto;
+  position: sticky; /* Neo lại khi cuộn */
+  top: 20px;       /* Cách mép trên màn hình 20px khi neo */
+  padding-right: 10px; /* Tạo khoảng trống cho thanh cuộn */
+}
+
+/* Tùy chỉnh thanh cuộn (Scrollbar) cho đẹp */
+.related::-webkit-scrollbar {
+  width: 6px; /* Độ rộng thanh cuộn */
+}
+
+.related::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Màu nền của đường ray cuộn */
+  border-radius: 10px;
+}
+
+.related::-webkit-scrollbar-thumb {
+  background: #555; /* Màu của cục cuộn */
+  border-radius: 10px;
+}
+
+.related::-webkit-scrollbar-thumb:hover {
+  background: #888; /* Màu khi di chuột vào cục cuộn */
+}
+
+/* Giữ nguyên các phần khác và sửa lại width của item cho linh hoạt */
+.related-item {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Giảm gap để cân đối hơn */
+  margin-bottom: 20px;
+  width: 100%; /* Để nó tự co giãn theo container .related */
+  min-width: 280px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.related-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Hiệu ứng hover nhẹ */
+}
+
+.related-item img {
+  width: 100px; /* Tăng kích thước ảnh thumb một chút cho dễ nhìn */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0; /* Ngăn ảnh bị bóp méo */
+}
+
+/* Các class khác giữ nguyên */
+.related-item.active {
+  background-color: grey;
+  transition: all 0.3s ease;
+}
+
+.title-video {
+  color: #fff;
+  margin-top: 10px;
 }

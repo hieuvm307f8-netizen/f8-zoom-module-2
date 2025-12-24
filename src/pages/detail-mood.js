@@ -36,8 +36,6 @@ export async function detailMoodScript (slug) {
     titleEl.textContent = response.data.hero.title;
     subTitleEl.textContent = response.data.hero.subtitle;
 
-    console.log(response.data.sections[1].items);
-
     // Quick Picks
     initHorizontalScroll("#scroll-quick-picks", 500);
     const featuredEl = document.querySelector("#scroll-quick-picks .scrollbar-list");
@@ -57,6 +55,7 @@ export async function detailMoodScript (slug) {
     initHorizontalScroll("#scroll-more", 500);
     const moreEl = document.querySelector("#scroll-more .scrollbar-list");
     const moreList = response.data.sections[1].items;
+    console.log(moreList);
     moreEl.innerHTML = moreList.map((item) => {
         return `
              <div class="item">

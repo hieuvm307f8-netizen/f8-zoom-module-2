@@ -80,14 +80,15 @@ export async function homeScript() {
   // Suggest Album
   const SuggestAlbumEl = document.querySelector(".scrollbar-list");
   const suggestAlbRequest = await instance.get("/home/albums-for-you");
+  // console.log(suggestAlbRequest.data);
   SuggestAlbumEl.innerHTML = suggestAlbRequest.data
     .map((item) => {
       return `
-            <div class="item">
+            <a class="item" data-navigo href="/albums/details/${item.slug}">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
-            </div>
+            </a>
         `;
     })
     .join("");
@@ -95,14 +96,15 @@ export async function homeScript() {
   // Hits
   const todayHitEl = document.querySelector(".today-hit");
   const todayHitResponse = await instance.get("/home/todays-hits");
+  console.log(todayHitResponse.data);
   todayHitEl.innerHTML = todayHitResponse.data
     .map((item) => {
       return `
-            <div class="item">
+            <a class="item" data-navigo href="/playlists/details/${item.slug}">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
-            </div>
+            </a>
         `;
     })
     .join("");
@@ -112,14 +114,15 @@ export async function homeScript() {
   const countryResponse = await instance.get(
     `/playlists/by-country?country=VN&limit=4`
   );
+  console.log(countryResponse.data);
   countryList.innerHTML = countryResponse.data
     .map((item) => {
       return `
-            <div class="country-item">
+            <a class="country-item" data-navigo href="/playlists/details/${item.slug}">
                 <img alt="country-thumb" class="country-thumb" src="${item.thumbnails[0]}"/>
                 <h3 class="country-item__title">${item.title}</h3>
                 <span class="artists">${item.artists}</span>
-            </div>
+            </a>
         `;
     })
     .join("");
