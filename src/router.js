@@ -7,8 +7,18 @@ import detailMood, { detailMoodScript } from './pages/detail-mood';
 import detailPlaylist, { detailPlaylistScript } from "./pages/detail-playlist";
 import detailSong, { detailSongScript } from "./pages/song-detail";
 import login, { loginScript } from "./pages/login";
+import register, { registerScript } from "./pages/register";
+import defaultLayout from "./Layouts/defaultLayout";
+import { headerScript } from "./components/header";
 
 export default function  router() {
+   const app = document.querySelector("#app");
+
+  // Render layout 1 lần
+  app.innerHTML = defaultLayout();
+
+  // Gắn event cho header
+  headerScript();
     const router = new Navigo('/');
     router
     .on("/", () => {
@@ -30,8 +40,12 @@ export default function  router() {
       premiumScript();
     })
     .on("/login", () => {
-      document.querySelector("#main-content").innerHTML = login();
+      document.querySelector("#app").innerHTML = login();
       loginScript();
+    })
+    .on("/register", () => {
+      document.querySelector("#app").innerHTML = register();
+      registerScript();
     })
     .on("/moods/:slug", ({data}) => {
       const slug = data.slug;
@@ -48,7 +62,6 @@ export default function  router() {
       const id = data.id;
       document.querySelector("#main-content").innerHTML = detailSong();
       detailSongScript(id);
-      console.log(id);
     })
     router.resolve();
 }

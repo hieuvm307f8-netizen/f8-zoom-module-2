@@ -16,7 +16,7 @@ export default function detailMood () {
                 </div>
                 <div class="scrollbar-list today-hit"></div>
             </section>
-
+            
             <h1 class="title">More</h1>
             <section class="scroll" id="scroll-more">
                 <div class="scroll-header">

@@ -6,6 +6,7 @@ import { initHorizontalScroll } from "../common/JS/scroll";
 export default function home() {
   return /*html*/ `                 
         <div class="content padding-content">
+            <span class="greeting"></span>
             <div class="mood-list"></div>
             <!-- Quick Pick-->
             <h1 class="title">Quick Pick</h1>
@@ -37,6 +38,13 @@ export default function home() {
 }
 
 export async function homeScript() {
+  const greetingEl = document.querySelector(".greeting");
+  const access_token = localStorage.getItem("access_token");
+  const authRessponse = await instance.get("/auth/me");
+  // console.log(authRessponse.data);
+  if(access_token) {
+    greetingEl.innerHTML = `Xin chào, ${authRessponse.data.name} <i class="fa-solid fa-heart" style="color: red;"></i>`;
+  }
   initHorizontalScroll(".scroll", 500);
   initHorizontalScroll("#scroll-top-hits", 500);
   //mood-list

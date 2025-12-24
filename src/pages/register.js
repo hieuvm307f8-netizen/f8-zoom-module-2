@@ -1,9 +1,9 @@
-import instance from "../axios";
-import "../style.css";
-import Toastify from "toastify-js";
+import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css";
+import "../style.css"
+import instance from '../axios';
 
-export default function login() {
+export default function register() {
   return /*html*/ `
     <div class="container">
       <div class="form-container">
@@ -12,75 +12,89 @@ export default function login() {
         </div>
 
         <div class="form-right">
-          <h2 class="form-title">Đăng nhập</h2>
+          <h2 class="form-title">Đăng Ký</h2>
 
           <form id="login-form">
+          <div class="form-group">
+              <label>Tên</label>
+              <input type="text" id="name" />
+              <span class="error-message"></span>
+            </div>
+
             <div class="form-group">
               <label>Email</label>
               <input type="email" id="email" />
+              <span class="error-message"></span>
             </div>
 
             <div class="form-group">
               <label>Mật khẩu</label>
               <input type="password" id="password" />
+              <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+              <label>Xác nhận mật khẩu</label>
+              <input type="password" id="password-confirm" />
+              <span class="error-message"></span>
             </div>
 
             <button type="submit" id="submit-btn">
-              <span class="btn-text">Đăng nhập</span>
-              <span class="loader" style="display: none;"></span>
+                <span class="btn-text">Đăng Ký</span> 
+                <span class="loader" style="display: none;"></span>
             </button>
-            <a href="/register" class="register" data-navigo>Chưa có tài khoản? Đăng ký</a>
+            <a href="/login" class="register" data-navigo>Đăng nhập</a>
           </form>
         </div>
       </div>
     </div>
   `;
-};
+}
 
-
-
-export function loginScript() {
-  const loginForm = document.getElementById("login-form");
+export function registerScript() {
+ const registerForm = document.getElementById("login-form");
   const submitBtn = document.getElementById("submit-btn");
   const btnText = submitBtn.querySelector(".btn-text");
   const loader = submitBtn.querySelector(".loader");
 
-  if (!loginForm) return;
-
-  loginForm.addEventListener("submit", async (e) => {
+  registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("password-confirm").value;
 
-    if (!email || !password) {
-      showToast("Vui lòng nhập email và mật khẩu!", dangerBg);
+    if (!name || !email || !password || !confirmPassword) {
+      showToast("Vui lòng nhập đầy đủ thông tin!", dangerBg);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      showToast("Mật khẩu xác nhận không khớp!", dangerBg);
       return;
     }
 
     toggleLoading(true);
 
     try {
-      const { data } = await instance.post("/auth/login", {
+      const { data } = await instance.post("/auth/register", {
+        name,
         email,
         password,
+        confirmPassword,
       });
 
-      const { access_token, refresh_token } = data;
-
-      localStorage.setItem("access_token", access_token);
-      localStorage.setItem("refresh_token", refresh_token);
-
-      showToast("Đăng nhập thành công 🎉", successBg);
+      showToast("Đăng ký thành công 🎉", successBg);
 
       setTimeout(() => {
-        window.location.href = "/";
+        window.location.href = "/login";
       }, 1200);
 
     } catch (error) {
       const message =
         error.response?.data?.message ||
-        "Đăng nhập thất bại. Vui lòng kiểm tra lại!";
+        "Đăng ký thất bại, vui lòng thử lại!";
       showToast(message, dangerBg);
     } finally {
       toggleLoading(false);

@@ -1,8 +1,4 @@
-/**
- * Hàm khởi tạo logic cuộn ngang
- * @param {string} parentSelector - Selector của thẻ cha bao quát cả nút và danh sách
- * @param {number} scrollStep - Khoảng cách cuộn mỗi lần bấm (mặc định 600)
- */
+
 export function initHorizontalScroll(parentSelector, scrollStep = 600) {
     const parent = document.querySelector(parentSelector);
     if (!parent) return;
