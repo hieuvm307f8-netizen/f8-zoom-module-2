@@ -11,26 +11,22 @@ import { headerScript } from "./components/header";
 import { footerScript } from "./components/footer";
 import detailAlbum, { detailAlbumScript } from "./pages/detail-album";
 import detailVideo, { detailVideoScript } from "./pages/detail-video";
-import home, { homeScript } from "./Pages/home";
 import release, { releaseScript } from "./pages/release";
 import ranking, { rankingScript } from "./pages/ranking";
 import Toastify from "toastify-js";
 import "toastify-js/src/toastify.css";
+import home, { homeScript } from './pages/home';
 
 export default function router() {
   const app = document.querySelector("#app");
 
-  // Render layout 1 lần
   app.innerHTML = defaultLayout();
-  // Gắn event cho header
   headerScript();
   footerScript();
   const router = new Navigo("/");
   router
     .on("/", () => {
-      // Render HTML
       document.querySelector("#main-content").innerHTML = home();
-      // Run JS
       homeScript();
     })
     .on("/explore", () => {
