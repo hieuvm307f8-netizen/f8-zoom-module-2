@@ -48,7 +48,7 @@ export async function detailSongScript(id) {
     return;
   }
 
-  // --- SỰ KIỆN CLICK BÀI HÁT ---
+  // Audio Handler
   tracksHTML.addEventListener("click", function (event) {
     const songItem = event.target.closest(".song-item");
     if (!songItem) return;

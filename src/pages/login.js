@@ -30,7 +30,8 @@ export default function login() {
               <span class="loader" style="display: none;"></span>
             </button>
             <a href="/register" class="register" data-navigo>Chưa có tài khoản? Đăng ký</a>
-          </form>
+            </form>
+            <a href="/" class="register" data-navigo>Truy cập với khách <i class="fa-solid fa-house"></i></a>
         </div>
       </div>
     </div>

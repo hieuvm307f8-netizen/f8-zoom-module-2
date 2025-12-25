@@ -8,7 +8,7 @@ export default function detailVideo() {
                 <div id="ytplayer"></div>
 
                 <div class="video-info">
-                    <h2 class="title-video"></h2>
+                    <h2 class="title-video" style="margin-bottom: 20px"></h2>
                     <span class="views"></span>
                 </div>
 
@@ -84,6 +84,7 @@ export async function detailVideoScript(slug) {
   function updateActiveVideo(videoId) {
     const allRelatedItems = document.querySelectorAll(".related-item");
     allRelatedItems.forEach((item) => {
+      item.classList.remove("active");
       if (item.dataset.id === videoId) {
         item.classList.add("active");
         item.style.borderRadius = "8px";
@@ -93,7 +94,7 @@ export async function detailVideoScript(slug) {
       }
     });
   }
-
+ 
   function initYoutubePlayer(videoId) {
     if (!window.YT) {
       const tag = document.createElement("script");
@@ -104,8 +105,8 @@ export async function detailVideoScript(slug) {
 
     const loadPlayer = () => {
       player = new YT.Player("ytplayer", {
-        height: "600",
-        width: "750",
+        height: "500",
+        width: "900",
         videoId: videoId,
         playerVars: {
           autoplay: 1,

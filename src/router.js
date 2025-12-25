@@ -1,9 +1,7 @@
 import Navigo from "navigo";
-import home, { homeScript } from "./pages/home";
 import explore, { exploreScript } from "./pages/explore";
 import library, { libraryScript } from "./pages/library";
-import premium, { premiumScript } from "./pages/premium";
-import detailMood, { detailMoodScript } from './pages/detail-mood';
+import detailMood, { detailMoodScript } from "./pages/detail-mood";
 import detailPlaylist, { detailPlaylistScript } from "./pages/detail-playlist";
 import detailSong, { detailSongScript } from "./pages/song-detail";
 import login, { loginScript } from "./pages/login";
@@ -13,35 +11,50 @@ import { headerScript } from "./components/header";
 import { footerScript } from "./components/footer";
 import detailAlbum, { detailAlbumScript } from "./pages/detail-album";
 import detailVideo, { detailVideoScript } from "./pages/detail-video";
+import home, { homeScript } from "./Pages/home";
+import release, { releaseScript } from "./pages/release";
+import ranking, { rankingScript } from "./pages/ranking";
+import Toastify from "toastify-js";
+import "toastify-js/src/toastify.css";
 
-export default function  router() {
-   const app = document.querySelector("#app");
+export default function router() {
+  const app = document.querySelector("#app");
 
   // Render layout 1 lần
   app.innerHTML = defaultLayout();
   // Gắn event cho header
   headerScript();
   footerScript();
-    const router = new Navigo('/');
-    router
+  const router = new Navigo("/");
+  router
     .on("/", () => {
       // Render HTML
       document.querySelector("#main-content").innerHTML = home();
       // Run JS
       homeScript();
-    
     })
     .on("/explore", () => {
       document.querySelector("#main-content").innerHTML = explore();
       exploreScript();
     })
     .on("/library", () => {
-      document.querySelector("#main-content").innerHTML = library();
-      libraryScript();
-    })
-    .on("/premium", () => {
-      document.querySelector("#main-content").innerHTML = premium();
-      premiumScript();
+      const isLogin = !!localStorage.getItem("access_token");
+      if (isLogin) {
+        document.querySelector("#main-content").innerHTML = library();
+        libraryScript();
+      } else {
+        Toastify({
+          text: "Bạn cần đăng nhập để xem Thư viện cá nhân",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          style: { background: "linear-gradient(to right, #ff5f6d, #ffc371)" },
+        }).showToast();
+
+        setTimeout(() => {
+          router.navigate("/login");
+        }, 1500);
+      }
     })
     .on("/login", () => {
       document.querySelector("#app").innerHTML = login();
@@ -51,23 +64,31 @@ export default function  router() {
       document.querySelector("#app").innerHTML = register();
       registerScript();
     })
-    .on("/moods/:slug", ({data}) => {
+    .on("/release", () => {
+      document.querySelector("#main-content").innerHTML = release();
+      releaseScript();
+    })
+    .on("/ranking", () => {
+      document.querySelector("#main-content").innerHTML = ranking();
+      rankingScript();
+    })
+    .on("/moods/:slug", ({ data }) => {
       const slug = data.slug;
       // console.log(slug);
-      document.querySelector("#main-content").innerHTML = detailMood(); 
+      document.querySelector("#main-content").innerHTML = detailMood();
       detailMoodScript(slug);
     })
-    .on("/playlists/details/:slug", ({data}) => {
+    .on("/playlists/details/:slug", ({ data }) => {
       const slug = data.slug;
-      document.querySelector("#main-content").innerHTML = detailPlaylist(); 
+      document.querySelector("#main-content").innerHTML = detailPlaylist();
       detailPlaylistScript(slug);
     })
-    .on("/songs/details/:id", ({data}) => {
+    .on("/songs/details/:id", ({ data }) => {
       const id = data.id;
       document.querySelector("#main-content").innerHTML = detailSong();
       detailSongScript(id);
     })
-    .on("/albums/details/:slug", ({data}) => {
+    .on("/albums/details/:slug", ({ data }) => {
       const slug = data.slug;
       document.querySelector("#main-content").innerHTML = detailAlbum();
       detailAlbumScript(slug);
@@ -76,6 +97,6 @@ export default function  router() {
       const slug = data.slug;
       document.querySelector("#main-content").innerHTML = detailVideo();
       detailVideoScript(slug);
-    })
-    router.resolve();
+    });
+  router.resolve();
 }

@@ -25,13 +25,6 @@ export default function sidebar () {
                         Library
                     </a>
                 </li>
-
-                <li>
-                    <a href="/premium" data-navigo>
-                        <i class="fa-solid nav-icon fa-crown"></i>
-                        Premium
-                    </a>
-                </li>
                                 
                 <li>
                     <a href="/login" data-navigo>

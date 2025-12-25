@@ -42,11 +42,11 @@ export async function detailMoodScript (slug) {
     const featutedList = response.data.sections[0].items;
     featuredEl.innerHTML = featutedList.map((item) => {
         return `
-             <div class="item">
+             <a class="item" data-navigo href="/playlists/details/${item.slug}">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
-            </div>
+            </a>
         `
     }).join('');
 
@@ -55,14 +55,14 @@ export async function detailMoodScript (slug) {
     initHorizontalScroll("#scroll-more", 500);
     const moreEl = document.querySelector("#scroll-more .scrollbar-list");
     const moreList = response.data.sections[1].items;
-    console.log(moreList);
+    // console.log(moreList);
     moreEl.innerHTML = moreList.map((item) => {
         return `
-             <div class="item">
+             <a class="item" data-navigo href="/playlists/details/${item.slug}">
                 <img src="${item.thumbnails[0]}" alt="alb-thumbnail" class="alb-thumbnail"/>
                 <h3 class="alb-name">${item.title}</h3>
                 <h3 class="alb-artists">${item.artists}</h3>
-            </div>
+            </a>
         `
     }).join('')
 }

@@ -7,12 +7,12 @@ export default function explore () {
             <div class="content padding-content">
                 <div class="page-wrapper">
                     <section class="options">
-                        <a href="" class="option-item">
+                        <a href="/release" data-navigo class="option-item">
                             <i class="fa-solid fa-compact-disc"></i>
                             Bản phát hành mới
                         </a>
 
-                        <a href="" class="option-item">
+                        <a href="/ranking" data-navigo class="option-item">
                             <i class="fa-solid fa-ranking-star"></i>
                             Bảng xếp hạng
                         </a>

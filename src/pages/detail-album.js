@@ -68,11 +68,8 @@ export async function detailAlbumScript(slug) {
   tracksHTML.addEventListener("click", function (event) {
     const songItem = event.target.closest(".song-item");
     if (!songItem) return;
-
     const songId = songItem.getAttribute("data-id");
-    
     const song = songs.find((s) => String(s.id) === String(songId));
-
     if (song) {
         if (typeof window.playMusic === "function") {
             window.playMusic(song, songs); 
@@ -90,4 +87,23 @@ export async function detailAlbumScript(slug) {
   
   window.removeEventListener('song-changed', onSongChanged); 
   window.addEventListener('song-changed', onSongChanged);
+
+  function highlightCurrentSong(songId) {
+    const allSongItems = document.querySelectorAll(".song-item"); 
+    
+    allSongItems.forEach(item => {
+      if (String(item.dataset.id) === String(songId)) {
+        item.classList.add("active");
+        item.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
+      } else {
+        item.classList.remove("active");
+        item.style.backgroundColor = "transparent";
+      }
+    });
+  }
+
+  window.addEventListener("song-changed", (e) => {
+    highlightCurrentSong(e.detail.songId);
+  });
+
 }
