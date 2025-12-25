@@ -26,7 +26,7 @@ export default function header() {
                 <div class="actions">
                     ${isLogin ? `
                         <div class="user-logged" style="display: flex; align-items: center; gap: 10px;">
-                            <img src="https://i.stack.imgur.com/frlIf.png" alt="Avatar" class="user-avatar" style="width: 35px; border-radius: 50%;" />
+                            <img src="/public/images/no-avatar-350x350-1.jpeg" alt="Avatar" class="user-avatar" style="width: 35px; border-radius: 50%;" />
                             <button id="logout-btn" class="btn-logout">
                                 Đăng xuất <i class="fa-solid fa-arrow-right-from-bracket"></i>
                             </button>
