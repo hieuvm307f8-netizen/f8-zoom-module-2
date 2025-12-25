@@ -8,7 +8,7 @@ export default function login() {
     <div class="container">
       <div class="form-container">
         <div class="form-left">
-          <img src="../../../public/images/federica-maniezzo-4JBs6_bUxWo-unsplash.jpg" />
+          <img src="/images/federica-maniezzo-4JBs6_bUxWo-unsplash.jpg" />
         </div>
 
         <div class="form-right">
