@@ -15,26 +15,26 @@ export default function detailAlbum() {
 export async function detailAlbumScript(slug) {
   const albumInfoEl = document.querySelector(".playlist-detail__info");
   const tracksHTML = document.querySelector(".playlist-detail__songs");
-  
+
   let songs = [];
 
-  try {
-    const response = await instance.get(`/albums/details/${slug}`);
-    const data = response.data;
-    
+  // --- HÀM RENDER GIAO DIỆN ---
+  const renderUI = (data) => {
     songs = data.tracks || [];
 
+    // Render thông tin Album
     albumInfoEl.innerHTML = `
-      <img class="playlist-detail__thumb" src="${data.thumbnails ? data.thumbnails[0] : ''}" />
+      <img class="playlist-detail__thumb" src="${data.thumbnails ? data.thumbnails[0] : ''}" alt="album-thumb"/>
       <h1 class="title">${data.title}</h1>
       <p class="sub-title">${data.popularity || 0} lượt thích</p>
     `;
 
+    // Render danh sách bài hát
     tracksHTML.innerHTML = songs.map((track, index) => `
-      <li class="playlist-detail__song-item song-item" data-id="${track.id}">
-          <i class="fa-solid fa-play"></i>
+      <li class="playlist-detail__song-item song-item" data-id="${track.id}" data-index="${index}">
+          <i class="fa-solid fa-play play-icon" id="alum-item__play"></i>
           <span class="song-item__index">${index + 1}</span>
-          <img class="song-item__thumb song-thumbnail" src="${track.thumbnails ? track.thumbnails[0] : ''}" />
+          <img class="song-item__thumb song-thumbnail" src="${track.thumbnails ? track.thumbnails[0] : ''}" loading="lazy" />
 
           <div class="song-item__info song-info">
             <h3 class="song-item__title song-title">${track.title}</h3>
@@ -46,21 +46,42 @@ export async function detailAlbumScript(slug) {
           </span>
       </li>
     `).join("");
+  };
 
-  } catch (error) {
-    console.error("Lỗi tải album:", error);
-    return;
-  }
+  const loadAlbumData = async () => {
+    const cacheKey = `album_${slug}`;
+    const cached = sessionStorage.getItem(cacheKey);
+
+    if (cached) {
+      renderUI(JSON.parse(cached));
+    }
+
+    try {
+      const response = await instance.get(`/albums/details/${slug}`);
+      const data = response.data;
+
+      if (JSON.stringify(data) !== cached) {
+        renderUI(data);
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+      }
+    } catch (error) {
+      console.error("Lỗi tải album:", error);
+    }
+  };
+
+  await loadAlbumData();
 
   function updateActiveSong(activeId) {
-    const allItems = document.querySelectorAll(".playlist-detail__song-item");
+    const allItems = document.querySelectorAll(".song-item");
     allItems.forEach((item) => {
+      const playIcon = item.querySelector(".play-icon");
       if (String(item.dataset.id) === String(activeId)) {
         item.classList.add("active");
-        item.style.backgroundColor = "rgba(255,255,255,0.1)"; 
+        item.style.backgroundColor = "rgba(255,255,255,0.1)";
       } else {
         item.classList.remove("active");
         item.style.backgroundColor = "transparent";
+        if (playIcon) playIcon.className = "fa-solid fa-play play-icon";
       }
     });
   }
@@ -68,42 +89,24 @@ export async function detailAlbumScript(slug) {
   tracksHTML.addEventListener("click", function (event) {
     const songItem = event.target.closest(".song-item");
     if (!songItem) return;
+
     const songId = songItem.getAttribute("data-id");
     const song = songs.find((s) => String(s.id) === String(songId));
+
     if (song) {
-        if (typeof window.playMusic === "function") {
-            window.playMusic(song, songs); 
-        } else {
-            console.error("Chưa load FooterScript");
-        }
-        
-        updateActiveSong(songId);
+      updateActiveSong(songId);
+      if (typeof window.playMusic === "function") {
+        window.playMusic(song, songs);
+      } else {
+        console.error("Chưa load FooterScript");
+      }
     }
   });
 
   const onSongChanged = (e) => {
-      updateActiveSong(e.detail);
+    updateActiveSong(e.detail.songId);
   };
-  
-  window.removeEventListener('song-changed', onSongChanged); 
-  window.addEventListener('song-changed', onSongChanged);
 
-  function highlightCurrentSong(songId) {
-    const allSongItems = document.querySelectorAll(".song-item"); 
-    
-    allSongItems.forEach(item => {
-      if (String(item.dataset.id) === String(songId)) {
-        item.classList.add("active");
-        item.style.backgroundColor = "rgba(255, 255, 255, 0.1)";
-      } else {
-        item.classList.remove("active");
-        item.style.backgroundColor = "transparent";
-      }
-    });
-  }
-
-  window.addEventListener("song-changed", (e) => {
-    highlightCurrentSong(e.detail.songId);
-  });
-
+  window.removeEventListener("song-changed", onSongChanged);
+  window.addEventListener("song-changed", onSongChanged);
 }

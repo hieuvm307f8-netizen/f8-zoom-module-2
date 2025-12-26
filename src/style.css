@@ -420,13 +420,19 @@ html {
 
 .playlist-detail__song-item .fa-play {
   position: absolute;
-  left: 56px;
+  left: 38px;
+  top: 23px;
   color: #fff;
   font-size: 18px;
   display: none;
 }
+
 .playlist-detail__song-item:hover .fa-play {
   display: block;
+}
+
+#alum-item__play {
+  left: 57px;
 }
 
 .playlist-detail__song-item:hover {
@@ -1563,3 +1569,17 @@ button:disabled {
     background: #333;
     border-radius: 10px;
 }
+
+
+.loader-audio {
+  font-size: 20px;
+  color: #fff;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.fa-spin {
+  animation: spin 1s linear infinite;
+}
+
